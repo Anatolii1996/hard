@@ -25,29 +25,41 @@
       display: flex;
       align-items: center;
       padding: 5px;
-      svg{
+      svg {
         width: 35px;
         height: 35px;
       }
-      p{
+      p {
         margin: 0 auto;
         color: #fff;
-
       }
     }
   }
 }
-.main_page{
+
+.main_wrap {
+  display: flex;
+  .main_page {
     display: flex;
     flex-direction: column;
-    p{
-        color:  #fff;
-        font-size: 25px;
+    width: 70%;
+    p {
+      color: #fff;
+      font-size: 25px;
     }
-    button{
-        color: deepskyblue;
-        border: 2px solid deepskyblue;
-        background: transparent;
-        padding: 5px 45px;
+    button {
+      color: deepskyblue;
+      border: 2px solid deepskyblue;
+      background: transparent;
+      padding: 5px 45px;
     }
+  }
+  .chat_wrap {
+    height: 90vh;
+    width: 30%;
+    background-image: url(https://catherineasquithgallery.com/uploads/posts/2021-03/1615845528_97-p-chernii-fon-vertikalnii-113.jpg);
+    border-left: 1px solid #fff;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
 }

@@ -19,13 +19,13 @@ const LoginPage = () => {
     return unsubscribe;
   }, [auth]);
 
-  useEffect(()=>{
-    const unsubscribe = auth.onAuthStateChanged((maybeUser) => {
-        if (maybeUser) {
-          navigate("/main");
-        }
-      });
-  }, [])
+  useEffect(() => {
+     auth.onAuthStateChanged((maybeUser) => {
+      if (maybeUser) {
+        navigate("/main");
+      }
+    });
+  }, []);
 
   const authorization = () => {
     signInWithPopup(auth, provider)
