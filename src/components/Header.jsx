@@ -11,7 +11,7 @@ const Logo = styled.p`
 const Header = () => {
   return (
     <>
-      <nav className="navbar navbar-dark bg-dark">
+      <nav className="navbar navbar-dark bg-dark ">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <Logo>Q</Logo>

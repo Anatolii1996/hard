@@ -1,5 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Golos+Text:wght@700&display=swap");
 
-.navbar, .navbar-brand{
-    padding: 0;
+.navbar,
+.navbar-brand {
+  padding: 0;
+}
+.main {
+  background-color: rgb(46, 45, 45);
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .auth_wrap {
+    width: 500px;
+    height: 150px;
+    background-color: rgb(33, 37, 41);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .button_wrap {
+      border: 2px solid goldenrod;
+      height: 50px;
+      width: 400px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      svg{
+        width: 35px;
+        height: 35px;
+      }
+      p{
+        margin: 0 auto;
+        color: #fff;
+
+      }
+    }
+  }
 }
