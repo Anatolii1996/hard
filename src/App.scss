@@ -37,3 +37,17 @@
     }
   }
 }
+.main_page{
+    display: flex;
+    flex-direction: column;
+    p{
+        color:  #fff;
+        font-size: 25px;
+    }
+    button{
+        color: deepskyblue;
+        border: 2px solid deepskyblue;
+        background: transparent;
+        padding: 5px 45px;
+    }
+}
