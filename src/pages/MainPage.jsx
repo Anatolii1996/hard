@@ -10,12 +10,17 @@ const ChatRoom = () => {
 
 const MainPage = () => {
   return (
-    <div className="main_wrap">
-      <div className="main main_page">
-        <p>START if you are ready to start Quiz</p>
-        <button>START</button>
+    <div className="main_page_wrap">
+      <div className="header_button">
+        <button className="func_button">Log out</button>
       </div>
-      <div className="chat_wrap"></div>
+      <div className="main_wrap">
+        <div className="main main_page">
+          <p>START if you are ready to start Quiz</p>
+          <button className="func_button">START</button>
+        </div>
+        <div className="chat_wrap"></div>
+      </div>
     </div>
   );
 };

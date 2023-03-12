@@ -8,16 +8,16 @@ import { useNavigate } from "react-router";
 const LoginPage = () => {
   const navigate = useNavigate();
   const auth = getAuth(app);
-  const [user, setUser] = useState(auth.currentUser);
+//   const [user, setUser] = useState(auth.currentUser);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((maybeUser) => {
-      if (maybeUser) {
-        setUser(maybeUser);
-      }
-    });
-    return unsubscribe;
-  }, [auth]);
+//   useEffect(() => {
+//     const unsubscribe = auth.onAuthStateChanged((maybeUser) => {
+//       if (maybeUser) {
+//         setUser(maybeUser);
+//       }
+//     });
+//     return unsubscribe;
+//   }, [auth]);
 
   useEffect(() => {
      auth.onAuthStateChanged((maybeUser) => {
@@ -29,7 +29,7 @@ const LoginPage = () => {
 
   const authorization = () => {
     signInWithPopup(auth, provider)
-      .then((credentials) => setUser(credentials.user))
+    //   .then((credentials) => setUser(credentials.user))
       .catch((e) => console.error(e));
   };
 
