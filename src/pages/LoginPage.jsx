@@ -5,9 +5,10 @@ import { provider } from "../firebase";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router";
 
+export const auth = getAuth(app);
+
 const LoginPage = () => {
   const navigate = useNavigate();
-  const auth = getAuth(app);
 //   const [user, setUser] = useState(auth.currentUser);
 
 //   useEffect(() => {
