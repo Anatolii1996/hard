@@ -4,7 +4,7 @@ import {
   orderBy,
   limit,
   addDoc,
-  Timestamp,
+  Timestamp, updateDoc 
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -24,13 +24,15 @@ const MainPage = () => {
   const sendMessage = async (e) => {
     e.preventDefault();
     const { uid, photoURL } = auth.currentUser;
-    await addDoc(messagesRef, {
+    const newMessage = await addDoc(messagesRef, {
       text: formValue,
       uid,
       createdAt: Timestamp.fromDate(new Date()),
       photoURL,
+      
     });
-    
+   
+
     setFormValue("");
   };
 
@@ -63,19 +65,18 @@ const MainPage = () => {
         </div>
         <div className="chat_wrap">
           {messages &&
-            messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
+            messages.map((msg) => <ChatMessage key={msg.createdAt} message={msg} />)}
           <form onSubmit={sendMessage}>
             <input
               type="text"
               value={formValue}
               onChange={(e) => setFormValue(e.target.value)}
             />
-            <button onClick={sendMessage} type="submit">
-              SEND
-            </button>
+            <button type="submit">SEND</button>
           </form>
         </div>
       </div>
+      {console.log(messages)}
     </div>
   );
 };
