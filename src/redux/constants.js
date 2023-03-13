@@ -1,0 +1,1 @@
+export const READY_USER = "READY_USER";
