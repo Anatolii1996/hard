@@ -5,7 +5,7 @@ import {
   limit,
   addDoc,
   Timestamp,
-  updateDoc,
+ 
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -50,6 +50,8 @@ const MainPage = () => {
     }
   };
 
+
+
   return (
     <div className="main_page_wrap">
       <div className="header_button">
@@ -66,7 +68,7 @@ const MainPage = () => {
           <div className="chat_wrap">
             {messages &&
               messages.map((msg) => (
-                <ChatMessage key={msg.createdAt} message={msg} />
+                <ChatMessage   key={msg.createdAt} message={msg} />
               ))}
           </div>
           <form onSubmit={sendMessage}>
