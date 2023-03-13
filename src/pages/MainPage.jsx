@@ -1,15 +1,38 @@
-import { collection, query, orderBy, limit } from "firebase/firestore";
+import {
+  collection,
+  query,
+  orderBy,
+  limit,
+  addDoc,
+  Timestamp,
+} from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { auth } from "./LoginPage";
 import { signOut } from "@firebase/auth";
 import { useNavigate } from "react-router";
 import ChatMessage from "../components/ChatMessage";
+import { useState } from "react";
 
 const MainPage = () => {
   const messagesRef = collection(db, "messages");
   const q = query(messagesRef, orderBy("createdAt"), limit(25));
   const [messages] = useCollectionData(q, { idField: "id" });
+
+  const [formValue, setFormValue] = useState("");
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    const { uid, photoURL } = auth.currentUser;
+    await addDoc(messagesRef, {
+      text: formValue,
+      uid,
+      createdAt: Timestamp.fromDate(new Date()),
+      photoURL,
+    });
+    
+    setFormValue("");
+  };
 
   const navigate = useNavigate();
 
@@ -39,12 +62,18 @@ const MainPage = () => {
           <button className="func_button">START</button>
         </div>
         <div className="chat_wrap">
-          {
-          messages &&messages.map((msg) =>
-           <ChatMessage key={msg.id} message={msg} />
-           )
-            // console.log(messages)
-            }
+          {messages &&
+            messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
+          <form onSubmit={sendMessage}>
+            <input
+              type="text"
+              value={formValue}
+              onChange={(e) => setFormValue(e.target.value)}
+            />
+            <button onClick={sendMessage} type="submit">
+              SEND
+            </button>
+          </form>
         </div>
       </div>
     </div>
