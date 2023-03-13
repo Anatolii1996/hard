@@ -24,7 +24,7 @@ const MainPage = () => {
   const sendMessage = async (e) => {
     e.preventDefault();
     const { uid, photoURL } = auth.currentUser;
-    const newMessage = await addDoc(messagesRef, {
+     await addDoc(messagesRef, {
       text: formValue,
       uid,
       createdAt: Timestamp.fromDate(new Date()),
@@ -63,17 +63,20 @@ const MainPage = () => {
           <p>START if you are ready to start Quiz</p>
           <button className="func_button">START</button>
         </div>
-        <div className="chat_wrap">
-          {messages &&
-            messages.map((msg) => <ChatMessage key={msg.createdAt} message={msg} />)}
+        <div className="chat">
+          <div className="chat_wrap">
+            {messages &&
+              messages.map((msg) => <ChatMessage key={msg.createdAt} message={msg} />)}
+          
+          </div>
           <form onSubmit={sendMessage}>
-            <input
-              type="text"
-              value={formValue}
-              onChange={(e) => setFormValue(e.target.value)}
-            />
-            <button type="submit">SEND</button>
-          </form>
+              <input
+                type="text"
+                value={formValue}
+                onChange={(e) => setFormValue(e.target.value)}
+              />
+              <button type="submit">SEND</button>
+            </form>
         </div>
       </div>
       {console.log(messages)}
