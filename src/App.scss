@@ -10,7 +10,8 @@
 }
 .main {
   background-color: rgb(46, 45, 45);
-  height: 90vh;
+  height: 89.5vh;
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,6 +56,7 @@
   }
   .main_wrap {
     display: flex;
+    overflow-y: hidden;
     .main_page {
       display: flex;
       flex-direction: column;
@@ -66,17 +68,29 @@
       }
     }
     .chat {
-      height: 90vh;
+      height: 89.5vh;
       width: 30%;
+      margin-top: 10px;
       background-image: url(https://catherineasquithgallery.com/uploads/posts/2021-03/1615845528_97-p-chernii-fon-vertikalnii-113.jpg);
       border-left: 1px solid #fff;
       border-top-left-radius: 15px;
       border-bottom-left-radius: 15px;
       .chat_wrap {
-        height: 85vh;
+        height: 82vh;
         overflow-y: scroll;
-
         margin-top: 10px;
+      }
+      form{
+        margin-left: 5px;
+        input{
+          width: 80%;
+          margin-right: 5px;
+        }
+        button{
+          padding: 3px;
+          background-color: rgb(8, 147, 8);
+          border-radius: 15px;
+        }
       }
     }
   }
@@ -95,4 +109,23 @@
 }
 ::-webkit-scrollbar-thumb{
   background-color: lightgray;
+}
+.message{
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  padding: 10px;
+  width: 80%;
+  
+  border-radius: 10px;
+  img{
+    width: 40px;
+  }
+  p{
+    margin: 0;
+    margin-left: 10px;
+  }
+}
+.sent{
+  background-color: rgb(173, 70, 173);
 }

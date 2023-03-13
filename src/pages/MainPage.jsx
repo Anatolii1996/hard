@@ -74,6 +74,7 @@ const MainPage = () => {
                 type="text"
                 value={formValue}
                 onChange={(e) => setFormValue(e.target.value)}
+                placeholder="Write some text..."
               />
               <button type="submit">SEND</button>
             </form>
