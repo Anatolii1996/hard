@@ -15,7 +15,7 @@ const ChatMessage = (props) => {
   }
 
   const { text, uid, photoURL } = props.message;
-{console.log(messagesEndRef);}
+
   const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
   return (
     <div ref={messagesEndRef} className={`message ${messageClass}`}>
