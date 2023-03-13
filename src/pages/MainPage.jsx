@@ -1,17 +1,16 @@
-import { collection } from "firebase/firestore";
+import { collection, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { auth } from "./LoginPage";
 import { signOut } from "@firebase/auth";
 import { useNavigate } from "react-router";
-
-// const ChatRoom = () => {
-//   const messagesRef = collection(db, "messages");
-//   const query = messagesRef.orderBy("createdAt").limit(25);
-//   const messages = useCollectionData(query, { idField: "id" });
-// };
+import ChatMessage from "../components/ChatMessage";
 
 const MainPage = () => {
+  const messagesRef = collection(db, "messages");
+  const q = query(messagesRef, orderBy("createdAt"), limit(25));
+  const [messages] = useCollectionData(q, { idField: "id" });
+
   const navigate = useNavigate();
 
   const logout = () => {
@@ -39,7 +38,14 @@ const MainPage = () => {
           <p>START if you are ready to start Quiz</p>
           <button className="func_button">START</button>
         </div>
-        <div className="chat_wrap"></div>
+        <div className="chat_wrap">
+          {
+          messages &&messages.map((msg) =>
+           <ChatMessage key={msg.id} message={msg} />
+           )
+            // console.log(messages)
+            }
+        </div>
       </div>
     </div>
   );
