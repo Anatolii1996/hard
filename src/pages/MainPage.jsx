@@ -5,7 +5,6 @@ import {
   limit,
   addDoc,
   Timestamp,
- 
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -14,6 +13,8 @@ import { signOut } from "@firebase/auth";
 import { useNavigate } from "react-router";
 import ChatMessage from "../components/ChatMessage";
 import { useState } from "react";
+import StartPage from "../components/StartPage";
+import ReadyPage from "../components/ReadyPage";
 
 const MainPage = () => {
   const messagesRef = collection(db, "messages");
@@ -31,7 +32,6 @@ const MainPage = () => {
       createdAt: Timestamp.fromDate(new Date()),
       photoURL,
     });
-
     setFormValue("");
   };
 
@@ -50,7 +50,7 @@ const MainPage = () => {
     }
   };
 
-
+  const [redy, setReady] = useState(false);
 
   return (
     <div className="main_page_wrap">
@@ -60,15 +60,16 @@ const MainPage = () => {
         </button>
       </div>
       <div className="main_wrap">
-        <div className="main main_page">
-          <p>START if you are ready to start Quiz</p>
-          <button className="func_button">START</button>
-        </div>
+        {!redy ? (
+          <StartPage setReady={setReady} redy={redy}/>
+        ) : (
+          <ReadyPage setReady={setReady} redy={redy}/>
+        )}
         <div className="chat">
           <div className="chat_wrap">
             {messages &&
               messages.map((msg) => (
-                <ChatMessage   key={msg.createdAt} message={msg} />
+                <ChatMessage key={msg.createdAt} message={msg} />
               ))}
           </div>
           <form onSubmit={sendMessage}>
