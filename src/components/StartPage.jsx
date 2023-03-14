@@ -1,12 +1,10 @@
-import { useState } from "react";
 import { auth } from "../pages/LoginPage";
 import { useDispatch } from 'react-redux';
 import { getReadyUser } from "../redux/actionCreator";
 
 const StartPage = ({ setReady, redy }) => {
   const dispatch = useDispatch();
-  const [readyUser, setReadyUser] = useState([]);
-
+  
   return (
     <div className="main main_page">
       <p>START if you are ready to start Quiz</p>
