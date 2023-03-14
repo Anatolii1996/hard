@@ -11,6 +11,7 @@ import {
   doc,
   setDoc,
   Timestamp,
+  deleteDoc 
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -20,6 +21,7 @@ import { auth } from "./LoginPage";
 import ChatMessage from "../components/ChatMessage";
 import StartPage from "../components/StartPage";
 import ReadyPage from "../components/ReadyPage";
+import { async } from "@firebase/util";
 
 const MainPage = () => {
   const messagesRef = collection(db, "messages");
@@ -28,9 +30,11 @@ const MainPage = () => {
 
   const [formValue, setFormValue] = useState("");
 
+  const { uid, photoURL } = auth.currentUser;
+
   const sendMessage = async (e) => {
     e.preventDefault();
-    const { uid, photoURL } = auth.currentUser;
+   
     await addDoc(messagesRef, {
       text: formValue,
       uid,
@@ -60,14 +64,19 @@ const MainPage = () => {
   const { readyUsers } = useSelector((state) => state);
 
 const writeReadyUsers= async (user)=>{
-  const { uid } = auth.currentUser;
+  // const { uid } = auth.currentUser;
   await setDoc(doc(db, "userReadiness", uid), user);
+}
+
+const removeReadyUser= async(user)=>{
+await deleteDoc(doc(db, "userReadiness", uid));
 }
 
 useEffect(()=>{
   if(readyUsers){
-    // console.log(readyUsers);
     writeReadyUsers(readyUsers)
+   }else{
+    removeReadyUser(readyUsers)
    }
 }, [readyUsers])
 
