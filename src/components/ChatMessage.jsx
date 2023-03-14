@@ -4,7 +4,7 @@ import { ref, getDownloadURL } from "firebase/storage";
 
 const ChatMessage = (props) => {
   const messagesEndRef = useRef(null);
-  const { text, uid } = props.message;
+  const { text, uid, displayName } = props.message;
   const [avatarURL, setAvatarUrl] = useState("");
 
   const scrollToBottom = () => {
@@ -17,19 +17,25 @@ const ChatMessage = (props) => {
     getDownloadURL(storageRef)
       .then((url) => {
         setAvatarUrl(url);
-      }).then(()=> scrollToBottom())
+      })
+      .then(() => scrollToBottom())
       .catch((error) => {
         console.error("Error getting avatar download URL:", error);
       });
-     
   }, [uid]);
-  
 
   const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
   return (
-    <div ref={messagesEndRef} className={`message ${messageClass}`}>
-      <img src={avatarURL} />
-      <p className="chat_msg">{text}</p>
+    <div className={`message_wrap ${messageClass}`}>
+      <div className="user_info">
+        <img src={avatarURL} />
+        <p>{displayName}</p>
+      </div>
+      
+      <div ref={messagesEndRef} className="message" >
+        
+        <p className="chat_msg">{text}</p>
+      </div>
     </div>
   );
 };

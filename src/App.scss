@@ -11,7 +11,7 @@
 .main {
   background-color: rgb(46, 45, 45);
   height: 89.5vh;
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,11 +79,12 @@
       .chat_wrap {
         height: 72vh;
         overflow-y: scroll;
+        overflow-x: hidden;
         margin-top: 10px;
       }
-      form{
+      form {
         margin-left: 5px;
-        input{
+        input {
           width: 70%;
           height: 80px;
           margin-right: 5px;
@@ -92,7 +93,7 @@
           opacity: 0.5;
           border: 0;
         }
-        button{
+        button {
           color: deepskyblue;
           border: 2px solid deepskyblue;
           background: transparent;
@@ -110,38 +111,56 @@
   background: transparent;
   padding: 5px 45px;
 }
-.cancel{
+.cancel {
   color: #fff;
-  background-color:deepskyblue ;
+  background-color: deepskyblue;
 }
 .chat_msg {
   color: #fff;
 }
-::-webkit-scrollbar{
- background: transparent;
+::-webkit-scrollbar {
+  background: transparent;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background-color: lightgray;
 }
-.message{
-  display: flex;
-  align-items: center;
-  margin: 5px;
-  padding: 10px;
-  width: 80%;
-  background-color: black;
-  opacity: 0.5;
-  border-radius: 10px;
-  img{
-    width: 40px;
+.message_wrap {
+  width: 60%;
+ 
+  .user_info {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    img {
+      width: 40px;
+      border-radius: 50%;
+    }
+    p {
+      color: deepskyblue;
+      font-size: 18px;
+      margin: 0;
+      margin-left: 5px;
+    }
   }
-  p{
-    margin: 0;
-    margin-left: 10px;
-    opacity: 1;
+
+  .message {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 10px;
+
+    background-color: black;
+    opacity: 0.5;
+    border-radius: 10px;
+
+    p {
+      margin: 0;
+      margin-left: 10px;
+      opacity: 1;
+    }
   }
 }
 
-.received{
-  margin-left: 70px;
+.received {
+  margin-left: 160px;
 }

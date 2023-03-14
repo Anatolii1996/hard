@@ -37,12 +37,12 @@ const MainPage = () => {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    const { uid } = auth.currentUser;
+    const { uid, displayName } = auth.currentUser;
     await addDoc(messagesRef, {
       text: formValue,
       uid,
       createdAt: Timestamp.fromDate(new Date()),
-     
+      displayName
     });
     setFormValue("");
   };
