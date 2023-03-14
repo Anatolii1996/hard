@@ -1,4 +1,4 @@
-import { auth } from "../pages/LoginPage";
+import { auth } from '../firebase';
 import { useDispatch } from 'react-redux';
 import { getReadyUser } from "../redux/actionCreator";
 

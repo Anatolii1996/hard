@@ -6,6 +6,9 @@ import LoginPage from "./pages/LoginPage"
 import MainPage from "./pages/MainPage";
 
 function App() {
+
+
+
   return (
     <Routes>
       <Route path="/" element={<Header/>}>

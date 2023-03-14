@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { auth } from "../pages/LoginPage";
+import { auth } from '../firebase';
 
 const ChatMessage = (props) => {
   const messagesEndRef = useRef(null);

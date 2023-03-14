@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { getAuth, signInWithPopup } from "firebase/auth";
-import { app } from "../firebase";
+import {  signInWithPopup } from "firebase/auth";
+import { auth } from "../firebase";
 import { provider } from "../firebase";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router";
 
-export const auth = getAuth(app);
+
 
 const LoginPage = () => {
   const navigate = useNavigate();

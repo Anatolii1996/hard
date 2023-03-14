@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
 import {
@@ -11,30 +11,32 @@ import {
   doc,
   setDoc,
   Timestamp,
-  deleteDoc 
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { signOut } from "@firebase/auth";
 
-import { auth } from "./LoginPage";
+import { auth } from "../firebase";
 import ChatMessage from "../components/ChatMessage";
 import StartPage from "../components/StartPage";
 import ReadyPage from "../components/ReadyPage";
-import { async } from "@firebase/util";
+
 
 const MainPage = () => {
+  const navigate = useNavigate();
+  
+  const { readyUsers  } = useSelector((state) => state);  
+
   const messagesRef = collection(db, "messages");
   const q = query(messagesRef, orderBy("createdAt"), limit(25));
   const [messages] = useCollectionData(q, { idField: "id" });
 
   const [formValue, setFormValue] = useState("");
 
-  const { uid, photoURL } = auth.currentUser;
-
   const sendMessage = async (e) => {
     e.preventDefault();
-   
+    const { uid, photoURL } = auth.currentUser;
     await addDoc(messagesRef, {
       text: formValue,
       uid,
@@ -43,8 +45,6 @@ const MainPage = () => {
     });
     setFormValue("");
   };
-
-  const navigate = useNavigate();
 
   const logout = () => {
     return signOut(auth);
@@ -61,24 +61,23 @@ const MainPage = () => {
 
   const [redy, setReady] = useState(false);
 
-  const { readyUsers } = useSelector((state) => state);
+  const writeReadyUsers = async (user) => {
+    const { uid } = auth.currentUser;
+    await setDoc(doc(db, "userReadiness", uid), user);
+  };
 
-const writeReadyUsers= async (user)=>{
-  // const { uid } = auth.currentUser;
-  await setDoc(doc(db, "userReadiness", uid), user);
-}
+  const removeReadyUser = async (user) => {
+    const { uid } = auth.currentUser;
+    await deleteDoc(doc(db, "userReadiness", uid));
+  };
 
-const removeReadyUser= async(user)=>{
-await deleteDoc(doc(db, "userReadiness", uid));
-}
-
-useEffect(()=>{
-  if(readyUsers){
-    writeReadyUsers(readyUsers)
-   }else{
-    removeReadyUser(readyUsers)
-   }
-}, [readyUsers])
+  useEffect(() => {
+    if (readyUsers) {
+      writeReadyUsers(readyUsers);
+    } else {
+      removeReadyUser(readyUsers);
+    }
+  }, [readyUsers]);
 
   return (
     <div className="main_page_wrap">
@@ -89,9 +88,9 @@ useEffect(()=>{
       </div>
       <div className="main_wrap">
         {!redy ? (
-          <StartPage setReady={setReady} redy={redy}/>
+          <StartPage setReady={setReady} redy={redy} />
         ) : (
-          <ReadyPage setReady={setReady} redy={redy}/>
+          <ReadyPage setReady={setReady} redy={redy} />
         )}
         <div className="chat">
           <div className="chat_wrap">

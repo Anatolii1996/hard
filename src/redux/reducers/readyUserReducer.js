@@ -8,6 +8,7 @@ const readyUsersReducer = (state = initialState, { type, payload }) => {
 
         case CANCEL_READY_USER:
             return null;
+           
         default:
             return state;
 
