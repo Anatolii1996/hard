@@ -37,7 +37,7 @@ const MainPage = () => {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    const { uid, photoURL } = auth.currentUser;
+    const { uid } = auth.currentUser;
     await addDoc(messagesRef, {
       text: formValue,
       uid,
@@ -121,7 +121,7 @@ const MainPage = () => {
               type="text"
               value={formValue}
               onChange={(e) => setFormValue(e.target.value)}
-              placeholder="Write some text..."
+              placeholder="Send a message..."
             />
             <button type="submit">SEND</button>
           </form>

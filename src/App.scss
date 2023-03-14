@@ -71,25 +71,34 @@
       height: 89.5vh;
       width: 30%;
       margin-top: 10px;
-      background-image: url(https://catherineasquithgallery.com/uploads/posts/2021-03/1615845528_97-p-chernii-fon-vertikalnii-113.jpg);
+      background-color: rgb(33, 37, 41);
+      background-image: url(https://firebasestorage.googleapis.com/v0/b/laboratory-3-b55c3.appspot.com/o/bgchat.png?alt=media&token=0325391a-8560-4860-89b7-d05e55cee9a3);
       border-left: 1px solid #fff;
       border-top-left-radius: 15px;
       border-bottom-left-radius: 15px;
       .chat_wrap {
-        height: 82vh;
+        height: 72vh;
         overflow-y: scroll;
         margin-top: 10px;
       }
       form{
         margin-left: 5px;
         input{
-          width: 80%;
+          width: 70%;
+          height: 80px;
           margin-right: 5px;
+          border-radius: 5px;
+          padding: 10px 5px 50px;
+          opacity: 0.5;
+          border: 0;
         }
         button{
-          padding: 3px;
-          background-color: rgb(8, 147, 8);
-          border-radius: 15px;
+          color: deepskyblue;
+          border: 2px solid deepskyblue;
+          background: transparent;
+          padding: 3px 30px;
+          border-radius: 10px;
+          margin-left: 10px;
         }
       }
     }
@@ -120,7 +129,8 @@
   margin: 5px;
   padding: 10px;
   width: 80%;
-  
+  background-color: black;
+  opacity: 0.5;
   border-radius: 10px;
   img{
     width: 40px;
@@ -128,12 +138,10 @@
   p{
     margin: 0;
     margin-left: 10px;
+    opacity: 1;
   }
 }
-.sent{
-  background-color: rgb(173, 70, 173);
-}
+
 .received{
-  background-color: rgb(66, 66, 226);
   margin-left: 70px;
 }
