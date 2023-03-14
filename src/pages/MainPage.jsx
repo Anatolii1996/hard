@@ -1,18 +1,23 @@
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+
 import {
   collection,
   query,
   orderBy,
   limit,
   addDoc,
+  doc,
+  setDoc,
   Timestamp,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { auth } from "./LoginPage";
 import { signOut } from "@firebase/auth";
-import { useNavigate } from "react-router";
+
+import { auth } from "./LoginPage";
 import ChatMessage from "../components/ChatMessage";
-import { useState } from "react";
 import StartPage from "../components/StartPage";
 import ReadyPage from "../components/ReadyPage";
 
@@ -51,6 +56,20 @@ const MainPage = () => {
   };
 
   const [redy, setReady] = useState(false);
+
+  const { readyUsers } = useSelector((state) => state);
+
+const writeReadyUsers= async (user)=>{
+  const { uid } = auth.currentUser;
+  await setDoc(doc(db, "userReadiness", uid), user);
+}
+
+useEffect(()=>{
+  if(readyUsers){
+    // console.log(readyUsers);
+    writeReadyUsers(readyUsers)
+   }
+}, [readyUsers])
 
   return (
     <div className="main_page_wrap">

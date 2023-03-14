@@ -17,7 +17,6 @@ const StartPage = ({ setReady, redy }) => {
       >
         START
       </button>
-      {console.log(auth.currentUser)}
     </div>
   );
 };

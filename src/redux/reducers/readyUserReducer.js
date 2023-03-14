@@ -7,7 +7,7 @@ const readyUsersReducer = (state = initialState, { type, payload }) => {
             return { ...state, ...payload };
 
         case CANCEL_READY_USER:
-            return initialState;
+            return null;
         default:
             return state;
 
