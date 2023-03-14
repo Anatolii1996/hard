@@ -8,9 +8,7 @@ const ChatMessage = (props) => {
     scrollToBottom();
   }, []);
 
- 
-
-  const scrollToBottom = () => {
+   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   }
 
