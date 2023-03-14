@@ -7,8 +7,6 @@ const ChatMessage = (props) => {
   const { text, uid } = props.message;
   const [avatarURL, setAvatarUrl] = useState("");
 
-  
-
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
@@ -19,14 +17,16 @@ const ChatMessage = (props) => {
     getDownloadURL(storageRef)
       .then((url) => {
         setAvatarUrl(url);
-      })
+      }).then(()=> scrollToBottom())
       .catch((error) => {
         console.error("Error getting avatar download URL:", error);
       });
+     
   }, [uid]);
-  useEffect(() => {
-    scrollToBottom();
-  }, []);
+  
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, []);
 
 
   const messageClass = uid === auth.currentUser.uid ? "sent" : "received";

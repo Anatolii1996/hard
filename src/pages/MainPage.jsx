@@ -88,9 +88,13 @@ const MainPage = () => {
     const snapshot = await uploadBytes(storageRef, blob);
   }
 
+ 
+
   useEffect(()=>{
     addUserAvatar()
   }, [])
+
+
 
   return (
     <div className="main_page_wrap">
