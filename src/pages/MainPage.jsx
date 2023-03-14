@@ -13,11 +13,12 @@ import {
   Timestamp,
   deleteDoc,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import {  ref, uploadBytes  } from "firebase/storage";
+
+import { db, storage, auth } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { signOut } from "@firebase/auth";
 
-import { auth } from "../firebase";
 import ChatMessage from "../components/ChatMessage";
 import StartPage from "../components/StartPage";
 import ReadyPage from "../components/ReadyPage";
@@ -78,6 +79,18 @@ const MainPage = () => {
       removeReadyUser(readyUsers);
     }
   }, [readyUsers]);
+
+  const addUserAvatar= async ()=>{
+    const { uid, photoURL } = auth.currentUser;
+    const response = await fetch(photoURL);
+    const blob = await response.blob();
+    const storageRef = ref(storage, `avatars/${uid}`);
+    const snapshot = await uploadBytes(storageRef, blob);
+  }
+
+  useEffect(()=>{
+    addUserAvatar()
+  }, [])
 
   return (
     <div className="main_page_wrap">
