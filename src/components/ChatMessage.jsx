@@ -24,10 +24,6 @@ const ChatMessage = (props) => {
      
   }, [uid]);
   
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, []);
-
 
   const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
   return (

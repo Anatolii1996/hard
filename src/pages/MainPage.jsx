@@ -42,7 +42,7 @@ const MainPage = () => {
       text: formValue,
       uid,
       createdAt: Timestamp.fromDate(new Date()),
-      photoURL,
+     
     });
     setFormValue("");
   };
