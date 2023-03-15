@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 import {
@@ -13,7 +13,7 @@ import {
   Timestamp,
   deleteDoc,
 } from "firebase/firestore";
-import {  ref, uploadBytes  } from "firebase/storage";
+import { ref, uploadBytes } from "firebase/storage";
 
 import { db, storage, auth } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -23,11 +23,10 @@ import ChatMessage from "../components/ChatMessage";
 import StartPage from "../components/StartPage";
 import ReadyPage from "../components/ReadyPage";
 
-
 const MainPage = () => {
   const navigate = useNavigate();
-  
-  const { readyUsers  } = useSelector((state) => state);  
+
+  const { readyUsers } = useSelector((state) => state);
 
   const messagesRef = collection(db, "messages");
   const q = query(messagesRef, orderBy("createdAt"), limit(25));
@@ -42,7 +41,7 @@ const MainPage = () => {
       text: formValue,
       uid,
       createdAt: Timestamp.fromDate(new Date()),
-      displayName
+      displayName,
     });
     setFormValue("");
   };
@@ -63,8 +62,11 @@ const MainPage = () => {
   const [redy, setReady] = useState(false);
 
   const writeReadyUsers = async (user) => {
-    const { uid } = auth.currentUser;
-    await setDoc(doc(db, "userReadiness", uid), user);
+    const { currentUser } = auth;
+    if (currentUser) {
+      const { uid } = auth.currentUser;
+      await setDoc(doc(db, "userReadiness", uid), user);
+    }
   };
 
   const removeReadyUser = async (user) => {
@@ -80,21 +82,20 @@ const MainPage = () => {
     }
   }, [readyUsers]);
 
-  const addUserAvatar= async ()=>{
-    const { uid, photoURL } = auth.currentUser;
-    const response = await fetch(photoURL);
-    const blob = await response.blob();
-    const storageRef = ref(storage, `avatars/${uid}`);
-    const snapshot = await uploadBytes(storageRef, blob);
-  }
+  const addUserAvatar = async () => {
+    const { currentUser } = auth;
+    if (currentUser) {
+      const { uid, photoURL } = auth.currentUser;
+      const response = await fetch(photoURL);
+      const blob = await response.blob();
+      const storageRef = ref(storage, `avatars/${uid}`);
+       await uploadBytes(storageRef, blob);
+    }
+  };
 
- 
-
-  useEffect(()=>{
-    addUserAvatar()
-  }, [])
-
-
+  useEffect(() => {
+    addUserAvatar();
+  }, []);
 
   return (
     <div className="main_page_wrap">
