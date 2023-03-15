@@ -10,6 +10,7 @@ import {
     Timestamp,
   } from "firebase/firestore";
   import { useCollectionData } from "react-firebase-hooks/firestore";
+  import { Outlet } from "react-router-dom";
 
 const Chat = () => {
     const messagesRef = collection(db, "messages");
