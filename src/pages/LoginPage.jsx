@@ -11,7 +11,7 @@ const LoginPage = () => {
   useEffect(() => {
      auth.onAuthStateChanged((maybeUser) => {
       if (maybeUser) {
-        navigate("/main");
+        navigate("/chat/main");
       }
     });
   }, []);

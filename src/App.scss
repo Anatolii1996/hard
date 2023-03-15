@@ -8,103 +8,7 @@
     z-index: 1;
   }
 }
-.main {
-  background-color: rgb(46, 45, 45);
-  height: 89.5vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .auth_wrap {
-    width: 500px;
-    height: 150px;
-    background-color: rgb(33, 37, 41);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .button_wrap {
-      border: 2px solid goldenrod;
-      height: 50px;
-      width: 400px;
-      background: transparent;
-      display: flex;
-      align-items: center;
-      padding: 5px;
-      svg {
-        width: 35px;
-        height: 35px;
-      }
-      p {
-        margin: 0 auto;
-        color: #fff;
-      }
-    }
-  }
-}
-
-.main_page_wrap {
-  margin-top: -50px;
-  .header_button {
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    z-index: 4;
-    margin-left: 20%;
-    button {
-      margin-right: 20px;
-    }
-  }
-  .main_wrap {
-    display: flex;
-    overflow-y: hidden;
-    .main_page {
-      display: flex;
-      flex-direction: column;
-      width: 70%;
-      margin-top: 10px;
-      p {
-        color: #fff;
-        font-size: 25px;
-      }
-    }
-    .chat {
-      height: 89.5vh;
-      width: 30%;
-      margin-top: 10px;
-      background-color: rgb(33, 37, 41);
-      background-image: url(https://firebasestorage.googleapis.com/v0/b/laboratory-3-b55c3.appspot.com/o/bgchat.png?alt=media&token=0325391a-8560-4860-89b7-d05e55cee9a3);
-      border-left: 1px solid #fff;
-      border-top-left-radius: 15px;
-      border-bottom-left-radius: 15px;
-      .chat_wrap {
-        height: 72vh;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        margin-top: 10px;
-      }
-      form {
-        margin-left: 5px;
-        input {
-          width: 70%;
-          height: 80px;
-          margin-right: 5px;
-          border-radius: 5px;
-          padding: 10px 5px 50px;
-          opacity: 0.5;
-          border: 0;
-        }
-        button {
-          color: deepskyblue;
-          border: 2px solid deepskyblue;
-          background: transparent;
-          padding: 3px 30px;
-          border-radius: 10px;
-          margin-left: 10px;
-        }
-      }
-    }
-  }
-}
 .func_button {
   color: deepskyblue;
   border: 2px solid deepskyblue;
@@ -126,7 +30,7 @@
 }
 .message_wrap {
   width: 60%;
- 
+
   .user_info {
     display: flex;
     align-items: center;
@@ -163,4 +67,100 @@
 
 .received {
   margin-left: 160px;
+}
+
+.chat_outlet {
+  display: flex;
+  overflow-y: hidden;
+  .main {
+    background-color: rgb(46, 45, 45);
+    height: 89.5vh;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .auth_wrap {
+      width: 500px;
+      height: 150px;
+      background-color: rgb(33, 37, 41);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .button_wrap {
+        border: 2px solid goldenrod;
+        height: 50px;
+        width: 400px;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        svg {
+          width: 35px;
+          height: 35px;
+        }
+        p {
+          margin: 0 auto;
+          color: #fff;
+        }
+      }
+    }
+  }
+  .main_page_wrap {
+    margin-top: -50px;
+    width: 70%;
+    .header_button {
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+      z-index: 4;
+      margin-left: 20%;
+      button {
+        margin-right: 20px;
+      }
+    }
+    .main_page {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+      p {
+        color: #fff;
+        font-size: 25px;
+      }
+    }
+  }
+  .chat {
+    height: 89.2vh;
+    width: 30%;
+    background-color: rgb(33, 37, 41);
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/laboratory-3-b55c3.appspot.com/o/bgchat.png?alt=media&token=0325391a-8560-4860-89b7-d05e55cee9a3);
+    border-left: 1px solid #fff;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    .chat_wrap {
+      height: 72vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      margin-top: 10px;
+    }
+    form {
+      margin-left: 5px;
+      input {
+        width: 70%;
+        height: 80px;
+        margin-right: 5px;
+        border-radius: 5px;
+        padding: 10px 5px 50px;
+        opacity: 0.5;
+        border: 0;
+      }
+      button {
+        color: deepskyblue;
+        border: 2px solid deepskyblue;
+        background: transparent;
+        padding: 3px 30px;
+        border-radius: 10px;
+        margin-left: 10px;
+      }
+    }
+  }
 }
