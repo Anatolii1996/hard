@@ -3,48 +3,23 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 import {
-  collection,
-  query,
-  orderBy,
-  limit,
-  addDoc,
   doc,
   setDoc,
-  Timestamp,
   deleteDoc,
 } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 
 import { db, storage, auth } from "../firebase";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { signOut } from "@firebase/auth";
 
-import ChatMessage from "../components/ChatMessage";
 import StartPage from "../components/StartPage";
 import ReadyPage from "../components/ReadyPage";
+import Chat from "../components/Chat";
 
 const MainPage = () => {
   const navigate = useNavigate();
 
   const { readyUsers } = useSelector((state) => state);
-
-  const messagesRef = collection(db, "messages");
-  const q = query(messagesRef, orderBy("createdAt"), limit(25));
-  const [messages] = useCollectionData(q, { idField: "id" });
-
-  const [formValue, setFormValue] = useState("");
-
-  const sendMessage = async (e) => {
-    e.preventDefault();
-    const { uid, displayName } = auth.currentUser;
-    await addDoc(messagesRef, {
-      text: formValue,
-      uid,
-      createdAt: Timestamp.fromDate(new Date()),
-      displayName,
-    });
-    setFormValue("");
-  };
 
   const logout = () => {
     return signOut(auth);
@@ -75,7 +50,7 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    if (readyUsers) {
+    if (readyUsers ) {
       writeReadyUsers(readyUsers);
     } else {
       removeReadyUser(readyUsers);
@@ -89,9 +64,25 @@ const MainPage = () => {
       const response = await fetch(photoURL);
       const blob = await response.blob();
       const storageRef = ref(storage, `avatars/${uid}`);
-       await uploadBytes(storageRef, blob);
+      await uploadBytes(storageRef, blob);
     }
   };
+
+  // useEffect(() => {
+  //   const deleteUserReadiness = async () => {
+  //     const q = query(collection(db, "userReadiness"));
+  //     const querySnapshot = await getDocs(q);
+  //     // console.log(querySnapshot);
+  //     querySnapshot.forEach(async (doc) => {
+  //       // console.log(doc);
+  //       if (!doc.data) {
+
+  //         await deleteDoc(doc.ref);
+  //       }
+  //     });
+  //   };
+  //   deleteUserReadiness();
+  // }, []);
 
   useEffect(() => {
     addUserAvatar();
@@ -110,23 +101,7 @@ const MainPage = () => {
         ) : (
           <ReadyPage setReady={setReady} redy={redy} />
         )}
-        <div className="chat">
-          <div className="chat_wrap">
-            {messages &&
-              messages.map((msg) => (
-                <ChatMessage key={msg.createdAt} message={msg} />
-              ))}
-          </div>
-          <form onSubmit={sendMessage}>
-            <input
-              type="text"
-              value={formValue}
-              onChange={(e) => setFormValue(e.target.value)}
-              placeholder="Send a message..."
-            />
-            <button type="submit">SEND</button>
-          </form>
-        </div>
+        <Chat/>
       </div>
     </div>
   );
