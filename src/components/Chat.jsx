@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import { db, auth } from "../firebase";
 import ChatMessage from "../components/ChatMessage";
+import { signOut } from "@firebase/auth";
 import {
   collection,
   query,
@@ -31,25 +33,45 @@ const Chat = () => {
     setFormValue("");
   };
 
+  const navigate = useNavigate();
+  const logout = () => {
+    return signOut(auth);
+  };
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/");
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
   return (
     <div className="chat_outlet">
-      <Outlet />
-      <div className="chat">
-        <div className="chat_wrap">
-          {messages &&
-            messages.map((msg) => (
-              <ChatMessage key={msg.createdAt} message={msg} />
-            ))}
+      <div className="header_button">
+        <button onClick={handleLogout} className="func_button">
+          Log out
+        </button>
+      </div>
+      <div className="center_wrap">
+        <Outlet />
+        <div className="chat">
+          <div className="chat_wrap">
+            {messages &&
+              messages.map((msg) => (
+                <ChatMessage key={msg.createdAt} message={msg} />
+              ))}
+          </div>
+          <form onSubmit={sendMessage}>
+            <input
+              type="text"
+              value={formValue}
+              onChange={(e) => setFormValue(e.target.value)}
+              placeholder="Send a message..."
+            />
+            <button type="submit">SEND</button>
+          </form>
         </div>
-        <form onSubmit={sendMessage}>
-          <input
-            type="text"
-            value={formValue}
-            onChange={(e) => setFormValue(e.target.value)}
-            placeholder="Send a message..."
-          />
-          <button type="submit">SEND</button>
-        </form>
       </div>
     </div>
   );

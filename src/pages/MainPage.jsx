@@ -1,38 +1,18 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-
 import {
   doc,
   setDoc,
   deleteDoc,
 } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
-
 import { db, storage, auth } from "../firebase";
-import { signOut } from "@firebase/auth";
-
 import StartPage from "../components/StartPage";
 import ReadyPage from "../components/ReadyPage";
-import Chat from "../components/Chat";
 
 const MainPage = () => {
-  const navigate = useNavigate();
-
+  
   const { readyUsers } = useSelector((state) => state);
-
-  const logout = () => {
-    return signOut(auth);
-  };
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-      navigate("/");
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
 
   const [redy, setReady] = useState(false);
 
@@ -89,19 +69,15 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div className="main_page_wrap">
-      <div className="header_button">
-        <button onClick={handleLogout} className="func_button">
-          Log out
-        </button>
-      </div>
+    <>
+      
         {!redy ? (
           <StartPage setReady={setReady} redy={redy} />
         ) : (
           <ReadyPage setReady={setReady} redy={redy} />
         )}
       
-    </div>
+    </>
   );
 };
 export default MainPage;
