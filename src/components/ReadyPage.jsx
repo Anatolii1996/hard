@@ -23,14 +23,17 @@ const ReadyPage = ({ setReady, redy }) => {
         setUsersForRedy((prev) => [...prev, uid]);
       }
     });
-    
   };
 
   useEffect(() => {
     getReadyUsers();
   }, []);
 
-  // useEffect
+  useEffect(() => {
+    if (usersForRedy.length > 0) {
+      navigate("/chat/game");
+    }
+  }, [usersForRedy]);
 
   return (
     <div className="main main_page">
