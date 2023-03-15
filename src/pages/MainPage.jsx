@@ -95,14 +95,12 @@ const MainPage = () => {
           Log out
         </button>
       </div>
-      {/* <div className="main_wrap"> */}
         {!redy ? (
           <StartPage setReady={setReady} redy={redy} />
         ) : (
           <ReadyPage setReady={setReady} redy={redy} />
         )}
-        {/* <Chat/> */}
-      {/* </div> */}
+      
     </div>
   );
 };
