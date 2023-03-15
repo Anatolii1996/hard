@@ -180,4 +180,35 @@
   width: 70%;
    background-color: rgb(46, 45, 45);
    color: #fff;
+   display: flex;
+   flex-direction: column;
+   padding: 30px;
+   .game_buttons{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    svg{
+      &:first-child{
+        color: rgb(34, 204, 16);
+      }
+      &:last-child{
+        background-color: rgb(196, 13, 13);
+        border-radius: 50%;
+        border: 1px solid rgb(196, 13, 13);
+      }
+      cursor: pointer;
+      width: 25px;
+      height: 25px;
+      margin-left: 10px;
+
+    }
+   }
+   .game_area{
+    width: 35%;
+    height: 60vh;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 2px solid deepskyblue;
+    background-color: rgb(33,37,41);
+   }
 }
