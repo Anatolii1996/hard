@@ -2,7 +2,7 @@ const AnswerButon = ({ el, selected, setSelected, key }) => {
   return (
     <button
     className={selected ? `answer_may selected` : `answer_may `}
-    onClick={(e) =>setSelected(el)}
+    onClick={() =>setSelected(el)}
     >
       {el}
     </button>
