@@ -1,4 +1,5 @@
 import QuestionWrap from "../components/QuestionWrap";
+import { useState, useEffect } from "react";
 
 const GamePage = () => {
   return (

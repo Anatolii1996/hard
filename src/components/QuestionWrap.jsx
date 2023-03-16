@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { GoCheck } from "react-icons/go";
 import { RxCross2 } from "react-icons/rx";
 import QuestionCard from "./QuestionCard";
+import { useNavigate } from "react-router";
 
 const QuestionWrap = () => {
   const [questioCard, setQuestionCard] = useState([]);
   const [count, setCount] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const q = query(collection(db, "questionsForGame"));
@@ -21,14 +23,37 @@ const QuestionWrap = () => {
     return () => unsubscribe();
   }, []);
 
+//   useEffect(() => {
+//     if (count > 9) {
+//       navigate("/chat/result");
+//     }
+//   }, [count]);
+
+  
+
   return (
     <div className="game_page_wrap">
       <div className="game_buttons">
-        <GoCheck onClick={()=>setCount(count+1)}/>
-        <RxCross2 onClick={()=>setCount(count+1)}/>
+        <GoCheck onClick={() =>{
+            if(count<9){
+                setCount(count + 1)
+            }else{
+                navigate("/chat/result"); 
+            }
+           } 
+        }  />
+        <RxCross2 onClick={() =>{
+            if(count<9){
+                setCount(count + 1)
+            }else{
+                navigate("/chat/result"); 
+            }
+           } 
+        } />
       </div>
       {questioCard.length > 0 && (
         <QuestionCard
+        count={count}
           key={questioCard[count].id}
           question={questioCard[count].question}
           rightAnswer={questioCard[count].rightAnswer}

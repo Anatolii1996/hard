@@ -1,5 +1,11 @@
 
-const QuestionCard=({question, rightAnswer, mayAnswers})=>{
+
+
+const QuestionCard=({question, rightAnswer, mayAnswers, count})=>{
+    
+
+   
+
 return(
     <div className="game_area">
         <p className="qustion_text">
