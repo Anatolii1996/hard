@@ -24,10 +24,17 @@ const QuestionWrap = () => {
   return (
     <div className="game_page_wrap">
       <div className="game_buttons">
-        <GoCheck />
-        <RxCross2 />
+        <GoCheck onClick={()=>setCount(count+1)}/>
+        <RxCross2 onClick={()=>setCount(count+1)}/>
       </div>
-      <QuestionCard/>
+      {questioCard.length > 0 && (
+        <QuestionCard
+          key={questioCard[count].id}
+          question={questioCard[count].question}
+          rightAnswer={questioCard[count].rightAnswer}
+          mayAnswers={questioCard[count].mayAnswers}
+        />
+      )}
     </div>
   );
 };

@@ -1,15 +1,18 @@
 
-const QuestionCard=()=>{
+const QuestionCard=({question, rightAnswer, mayAnswers})=>{
 return(
     <div className="game_area">
         <p className="qustion_text">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae, nam.
+          {question}
         </p>
         <div className="answer_buttons_wrap">
-          <button className="answer_may">lorem</button>
-          <button className="answer_may">lorem</button>
-          <button className="answer_may">lorem</button>
-          <button className="answer_may">lorem</button>
+            {mayAnswers.map((el)=>{
+                return(
+                    <button className="answer_may">{el}</button>
+                )
+            })}
+          
+         
         </div>
       </div>
 )
