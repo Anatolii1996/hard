@@ -30,7 +30,7 @@ const ReadyPage = ({ setReady, redy }) => {
   }, []);
 
   useEffect(() => {
-    if (usersForRedy.length > 0) {
+    if (usersForRedy.length > 1) {
       navigate("/chat/game");
     }
   }, [usersForRedy]);

@@ -226,8 +226,17 @@
       background: transparent;
       color: #fff;
     }
+    .selected{
+      border-color: green;
+    }
    }
 }
 .result_page{
   background-color:  rgb(46, 45, 45);
+  height: 89.5vh;
+  width: 70%;
+  margin-top: 10px;
+}
+.selected{
+  border-color: green;
 }
