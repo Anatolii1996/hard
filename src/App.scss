@@ -188,19 +188,21 @@
     justify-content: center;
     margin-bottom: 30px;
     svg{
-      &:first-child{
-        color: rgb(34, 204, 16);
-      }
-      &:last-child{
-        background-color: rgb(196, 13, 13);
-        border-radius: 50%;
-        border: 1px solid rgb(196, 13, 13);
-      }
+      
+      
       cursor: pointer;
       width: 25px;
       height: 25px;
       margin-left: 10px;
 
+    }
+    .check_button{
+      color: rgb(34, 204, 16);
+    }
+    .wrong_button{
+      background-color: rgb(196, 13, 13);
+      border-radius: 50%;
+      border: 1px solid rgb(196, 13, 13);
     }
    }
    .game_area{

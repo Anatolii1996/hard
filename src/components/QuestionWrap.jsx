@@ -12,6 +12,7 @@ const QuestionWrap = () => {
   const [rightAnswer, setRightAnswer] = useState(null);
   const [selectAnswer, setSelectAnswer] = useState(null);
   const [resultCount, setResultCount] = useState(0);
+  const [userRight, setUserRight] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,13 +31,18 @@ const QuestionWrap = () => {
     <div className="game_page_wrap">
       <div className="game_buttons">
         <GoCheck
+        className="check_button"
           onClick={() => {
             if (count < 9) {
               if (selectAnswer == rightAnswer) {
                 setResultCount(resultCount + 1);
+                setUserRight(true);
+              } else {
+                setUserRight(false);
               }
               setTimeout(() => {
                 setCount(count + 1);
+                setUserRight(null)
               }, 1500);
             } else {
               navigate("/chat/result");
@@ -44,6 +50,7 @@ const QuestionWrap = () => {
           }}
         />
         <RxCross2
+         className="wrong_button"
           onClick={() => {
             if (count < 9) {
               setCount(count + 1);
@@ -52,6 +59,7 @@ const QuestionWrap = () => {
             }
           }}
         />
+       {userRight === true ? <GoCheck className="check_button"/> : userRight === false ? <RxCross2 className="wrong_button"/> : null}
       </div>
       {questioCard.length > 0 && (
         <QuestionCard
