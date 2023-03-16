@@ -11,7 +11,7 @@ const QuestionWrap = () => {
   const [count, setCount] = useState(0);
   const [rightAnswer, setRightAnswer] = useState(null);
   const [selectAnswer, setSelectAnswer] = useState(null);
-    const [resultCount, setResultCount] = useState(0);
+  const [resultCount, setResultCount] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,17 +26,18 @@ const QuestionWrap = () => {
     return () => unsubscribe();
   }, []);
 
-
   return (
     <div className="game_page_wrap">
       <div className="game_buttons">
         <GoCheck
           onClick={() => {
             if (count < 9) {
-                if(selectAnswer==rightAnswer){
-                    setResultCount(resultCount+1)
-                }
-              setCount(count + 1);
+              if (selectAnswer == rightAnswer) {
+                setResultCount(resultCount + 1);
+              }
+              setTimeout(() => {
+                setCount(count + 1);
+              }, 1500);
             } else {
               navigate("/chat/result");
             }
