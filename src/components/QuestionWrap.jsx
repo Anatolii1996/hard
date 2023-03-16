@@ -31,7 +31,7 @@ const QuestionWrap = () => {
     <div className="game_page_wrap">
       <div className="game_buttons">
         <GoCheck
-        className="check_button"
+          className="check_button"
           onClick={() => {
             if (count < 9) {
               if (selectAnswer == rightAnswer) {
@@ -42,15 +42,17 @@ const QuestionWrap = () => {
               }
               setTimeout(() => {
                 setCount(count + 1);
-                setUserRight(null)
+                setUserRight(null);
               }, 1500);
             } else {
-              navigate("/chat/result");
+              setTimeout(() => {
+                navigate("/chat/result");
+              }, 1500);
             }
           }}
         />
         <RxCross2
-         className="wrong_button"
+          className="wrong_button"
           onClick={() => {
             if (count < 9) {
               setCount(count + 1);
@@ -59,7 +61,11 @@ const QuestionWrap = () => {
             }
           }}
         />
-       {userRight === true ? <GoCheck className="check_button"/> : userRight === false ? <RxCross2 className="wrong_button"/> : null}
+        {userRight === true ? (
+          <GoCheck className="check_button" />
+        ) : userRight === false ? (
+          <RxCross2 className="wrong_button" />
+        ) : null}
       </div>
       {questioCard.length > 0 && (
         <QuestionCard
