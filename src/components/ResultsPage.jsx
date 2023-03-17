@@ -2,10 +2,17 @@ import React, { useEffect, useState } from "react";
 import { auth, storage, db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { collection, query } from "firebase/firestore";
+import UserResult from "./UserResult";
 
 const Results = () => {
   const q = query(collection(db, "results"));
   const [results] = useCollectionData(q);
+  useEffect(() => {
+    if (results) {
+      const [user] = results;
+      console.log(user.uid);
+    }
+  }, [results]);
 
   return (
     <div className="result_page">
@@ -18,22 +25,18 @@ const Results = () => {
             </tr>
           </thead>
           <tbody>
-            {results&&results.map((user)=>{
-                return(
-                    <tr>
-                    <td>{user.displayName}</td>
-                    <td>{user.resultCount}</td>
-                </tr>
-                )
-                
-            })}
+            {results &&
+              results.map((user) => (
+                <UserResult key={user.uid} results={user}/>
+               
+              ))}
           </tbody>
         </table>
       </div>
       <div className="result_button">
         <button className="func_button">OK</button>
       </div>
-      {console.log(results)}
+      {/* {console.log(results)} */}
     </div>
   );
 };
