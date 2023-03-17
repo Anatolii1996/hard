@@ -29,11 +29,11 @@ const QuestionWrap = () => {
 
   const sendResults = async () => {
     const resultsRef = collection(db, "results");
-    const { uid } = auth.currentUser;
+    const { uid, displayName } = auth.currentUser;
     await addDoc(resultsRef, {
       resultCount,
       uid,
-     
+      displayName
     });
   };
 
