@@ -7,7 +7,8 @@ const QuestionCard = ({
   rightAnswer,
   mayAnswers,
   setRightAnswer,
-  setSelectAnswer
+  setSelectAnswer,
+  
 }) => {
   const [selectedEl, setSelectedEl] = useState(null);
 
@@ -17,6 +18,7 @@ const QuestionCard = ({
 
   useEffect(()=>{
     setSelectAnswer(selectedEl)
+   
   }, [selectedEl])
 
   return (

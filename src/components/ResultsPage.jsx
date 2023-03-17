@@ -10,7 +10,7 @@ const Results = () => {
   useEffect(() => {
     if (results) {
       const [user] = results;
-      console.log(user.uid);
+     
     }
   }, [results]);
 

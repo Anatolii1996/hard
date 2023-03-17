@@ -1,11 +1,10 @@
 import { onSnapshot, query, collection, addDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { GoCheck } from "react-icons/go";
 import { RxCross2 } from "react-icons/rx";
 import QuestionCard from "./QuestionCard";
 import { useNavigate } from "react-router";
-import { async } from "@firebase/util";
 
 const QuestionWrap = () => {
   const [questioCard, setQuestionCard] = useState([]);
@@ -15,6 +14,12 @@ const QuestionWrap = () => {
   const [resultCount, setResultCount] = useState(0);
   const [userRight, setUserRight] = useState(null);
   const navigate = useNavigate();
+
+  const latestState = useRef(resultCount);
+  useEffect(() => {
+    latestState.current = resultCount;
+  }, [resultCount]);
+
 
   useEffect(() => {
     const q = query(collection(db, "questionsForGame"));
@@ -28,22 +33,26 @@ const QuestionWrap = () => {
     return () => unsubscribe();
   }, []);
 
-  const sendResults = async () => {
+  const sendResults = async (val) => {
     const resultsRef = collection(db, "results");
     const { uid, displayName } = auth.currentUser;
     await addDoc(resultsRef, {
-      resultCount: count,
+      resultCount: val,
       uid,
       displayName,
     });
   };
+
+  // useEffect(()=>{
+
+  // })
 
   return (
     <div className="game_page_wrap">
       <div className="game_buttons">
         <GoCheck
           className="check_button"
-          onClick={ () => {
+          onClick={() => {
             if (count < 9) {
               if (selectAnswer === rightAnswer) {
                 setResultCount(resultCount + 1);
@@ -55,21 +64,22 @@ const QuestionWrap = () => {
                 setCount(count + 1);
                 setUserRight(null);
               }, 1500);
-            } else if (count === 9) {
+            } else {
               if (selectAnswer === rightAnswer) {
                 setResultCount(resultCount + 1);
                 setUserRight(true);
               } else {
                 setUserRight(false);
               }
+              
+              
               setTimeout(() => {
-                // setCount(count + 1);
-                setUserRight(null);
-                sendResults();
+                // console.log(resultCount);
+                // console.log(latestState.current);
+                sendResults(latestState.current);
                 navigate("/chat/result");
               }, 1500);
             }
-            
           }}
         />
         <RxCross2
