@@ -28,7 +28,7 @@ const ChatMessage = (props) => {
   return (
     <div className={`message_wrap ${messageClass}`}>
       <div className="user_info">
-        <img src={avatarURL} />
+        <img className="user_avatar" src={avatarURL} />
         <p>{displayName}</p>
       </div>
       

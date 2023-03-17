@@ -68,10 +68,7 @@
     display: flex;
     align-items: center;
     padding-left: 10px;
-    img {
-      width: 40px;
-      border-radius: 50%;
-    }
+   
     p {
       color: deepskyblue;
       font-size: 18px;
@@ -254,4 +251,16 @@
 }
 .selected {
   border-color: green;
+}
+.user_avatar {
+  width: 40px;
+  border-radius: 50%;
+}
+.user_name{
+  color:deepskyblue;
+  margin-left: 5px;
+  font-size: 18px;
+}
+.result_count{
+  text-align: center;
 }
