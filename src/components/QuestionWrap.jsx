@@ -1,4 +1,4 @@
-import { onSnapshot, query, collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { onSnapshot, query, collection,  setDoc, doc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { useEffect, useState, useRef } from "react";
 import { GoCheck } from "react-icons/go";
@@ -40,6 +40,8 @@ const QuestionWrap = () => {
       displayName,
     }) 
   };
+
+  
 
   return (
     <div className="game_page_wrap">

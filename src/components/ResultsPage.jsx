@@ -1,5 +1,6 @@
 import React from "react";
-import {  db } from "../firebase";
+import {  db, auth } from "../firebase";
+import { deleteDoc, doc } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { collection, query } from "firebase/firestore";
 import UserResult from "./UserResult";
@@ -9,6 +10,11 @@ const Results = () => {
   const q = query(collection(db, "results"));
   const [results] = useCollectionData(q);
   const navigate = useNavigate();
+
+  const deleteDocument=async ()=>{
+    const { uid } = auth.currentUser;
+    await deleteDoc(doc(db, "results", uid));
+  }
 
   return (
     <div className="result_page">
@@ -30,7 +36,10 @@ const Results = () => {
         </table>
       </div>
       <div className="result_button">
-        <button className="func_button">OK</button>
+        <button onClick={()=>{
+          deleteDocument();
+          navigate("/chat/main")
+        }} className="func_button">OK</button>
       </div>
     </div>
   );
