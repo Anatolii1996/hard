@@ -48,21 +48,6 @@ const MainPage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const deleteUserReadiness = async () => {
-  //     const q = query(collection(db, "userReadiness"));
-  //     const querySnapshot = await getDocs(q);
-  //     // console.log(querySnapshot);
-  //     querySnapshot.forEach(async (doc) => {
-  //       // console.log(doc);
-  //       if (!doc.data) {
-
-  //         await deleteDoc(doc.ref);
-  //       }
-  //     });
-  //   };
-  //   deleteUserReadiness();
-  // }, []);
 
   useEffect(() => {
     addUserAvatar();
