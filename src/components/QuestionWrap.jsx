@@ -20,7 +20,6 @@ const QuestionWrap = () => {
     latestState.current = resultCount;
   }, [resultCount]);
 
-
   useEffect(() => {
     const q = query(collection(db, "questionsForGame"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -42,10 +41,6 @@ const QuestionWrap = () => {
       displayName,
     });
   };
-
-  // useEffect(()=>{
-
-  // })
 
   return (
     <div className="game_page_wrap">
@@ -71,11 +66,8 @@ const QuestionWrap = () => {
               } else {
                 setUserRight(false);
               }
-              
-              
+
               setTimeout(() => {
-                // console.log(resultCount);
-                // console.log(latestState.current);
                 sendResults(latestState.current);
                 navigate("/chat/result");
               }, 1500);
@@ -88,6 +80,7 @@ const QuestionWrap = () => {
             if (count < 9) {
               setCount(count + 1);
             } else {
+              sendResults(latestState.current);
               navigate("/chat/result");
             }
           }}
