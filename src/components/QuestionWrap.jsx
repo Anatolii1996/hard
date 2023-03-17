@@ -5,6 +5,7 @@ import { GoCheck } from "react-icons/go";
 import { RxCross2 } from "react-icons/rx";
 import QuestionCard from "./QuestionCard";
 import { useNavigate } from "react-router";
+import { async } from "@firebase/util";
 
 const QuestionWrap = () => {
   const [questioCard, setQuestionCard] = useState([]);
@@ -31,9 +32,9 @@ const QuestionWrap = () => {
     const resultsRef = collection(db, "results");
     const { uid, displayName } = auth.currentUser;
     await addDoc(resultsRef, {
-      resultCount,
+      resultCount: count,
       uid,
-      displayName
+      displayName,
     });
   };
 
@@ -42,9 +43,9 @@ const QuestionWrap = () => {
       <div className="game_buttons">
         <GoCheck
           className="check_button"
-          onClick={() => {
+          onClick={ () => {
             if (count < 9) {
-              if (selectAnswer == rightAnswer) {
+              if (selectAnswer === rightAnswer) {
                 setResultCount(resultCount + 1);
                 setUserRight(true);
               } else {
@@ -54,12 +55,21 @@ const QuestionWrap = () => {
                 setCount(count + 1);
                 setUserRight(null);
               }, 1500);
-            } else {
-              sendResults();
+            } else if (count === 9) {
+              if (selectAnswer === rightAnswer) {
+                setResultCount(resultCount + 1);
+                setUserRight(true);
+              } else {
+                setUserRight(false);
+              }
               setTimeout(() => {
+                // setCount(count + 1);
+                setUserRight(null);
+                sendResults();
                 navigate("/chat/result");
               }, 1500);
             }
+            
           }}
         />
         <RxCross2
