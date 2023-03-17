@@ -1,5 +1,5 @@
-import { onSnapshot, query, collection } from "firebase/firestore";
-import { db } from "../firebase";
+import { onSnapshot, query, collection, addDoc } from "firebase/firestore";
+import { db, auth } from "../firebase";
 import { useEffect, useState } from "react";
 import { GoCheck } from "react-icons/go";
 import { RxCross2 } from "react-icons/rx";
@@ -27,6 +27,16 @@ const QuestionWrap = () => {
     return () => unsubscribe();
   }, []);
 
+  const sendResults = async () => {
+    const resultsRef = collection(db, "results");
+    const { uid } = auth.currentUser;
+    await addDoc(resultsRef, {
+      resultCount,
+      uid,
+     
+    });
+  };
+
   return (
     <div className="game_page_wrap">
       <div className="game_buttons">
@@ -45,6 +55,7 @@ const QuestionWrap = () => {
                 setUserRight(null);
               }, 1500);
             } else {
+              sendResults();
               setTimeout(() => {
                 navigate("/chat/result");
               }, 1500);
