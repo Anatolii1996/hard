@@ -14,6 +14,7 @@ const Results = () => {
   const deleteDocument=async ()=>{
     const { uid } = auth.currentUser;
     await deleteDoc(doc(db, "results", uid));
+    await deleteDoc(doc(db, "userReadiness", uid));
   }
 
   return (
