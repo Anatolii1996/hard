@@ -54,7 +54,7 @@ const MainPage = () => {
   }, []);
 
   return (
-    <>
+    <div data-testid="main_page">
       
         {!redy ? (
           <StartPage setReady={setReady} redy={redy} />
@@ -62,7 +62,7 @@ const MainPage = () => {
           <ReadyPage setReady={setReady} redy={redy} />
         )}
       
-    </>
+    </div>
   );
 };
 export default MainPage;
