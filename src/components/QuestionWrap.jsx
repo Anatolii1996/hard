@@ -101,6 +101,7 @@ const QuestionWrap = () => {
           mayAnswers={questioCard[count].mayAnswers}
           setRightAnswer={setRightAnswer}
           setSelectAnswer={setSelectAnswer}
+          userRight={userRight}
         />
       )}
     </div>

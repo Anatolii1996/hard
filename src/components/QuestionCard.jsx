@@ -8,7 +8,7 @@ const QuestionCard = ({
   mayAnswers,
   setRightAnswer,
   setSelectAnswer,
-  
+  userRight,
 }) => {
   const [selectedEl, setSelectedEl] = useState(null);
 
@@ -16,10 +16,9 @@ const QuestionCard = ({
     setRightAnswer(rightAnswer);
   }, []);
 
-  useEffect(()=>{
-    setSelectAnswer(selectedEl)
-   
-  }, [selectedEl])
+  useEffect(() => {
+    setSelectAnswer(selectedEl);
+  }, [selectedEl]);
 
   return (
     <div className="game_area">
@@ -28,6 +27,7 @@ const QuestionCard = ({
         {mayAnswers.map((el) => {
           return (
             <AnswerButon
+              userRight={userRight}
               selected={el === selectedEl}
               key={uuidv4()}
               setSelected={setSelectedEl}
