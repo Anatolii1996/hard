@@ -47,7 +47,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="chat_outlet">
+    <div className="chat_outlet" data-testid="chat_wrap">
       <div className="header_button">
         <button onClick={handleLogout} className="func_button">
           Log out
@@ -55,14 +55,14 @@ const Chat = () => {
       </div>
       <div className="center_wrap">
         <Outlet />
-        <div className="chat">
+        <div className="chat" data-testid="chat_wrap_test">
           <div className="chat_wrap">
             {messages &&
               messages.map((msg) => (
                 <ChatMessage key={msg.createdAt} message={msg} />
               ))}
           </div>
-          <form onSubmit={sendMessage}>
+          <form onSubmit={sendMessage} role="form">
             <input
               type="text"
               value={formValue}

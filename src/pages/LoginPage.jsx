@@ -22,7 +22,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="main">
+    <div className="main" data-testid="login_page">
       <div className="auth_wrap">
         <button onClick={authorization} className="button_wrap">
           <FcGoogle />
