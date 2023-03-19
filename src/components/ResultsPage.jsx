@@ -18,7 +18,7 @@ const Results = () => {
   }
 
   return (
-    <div className="result_page">
+    <div className="result_page" data-testid="result_table_test">
       <div className="result_table">
         <table>
           <thead>

@@ -44,8 +44,8 @@ const QuestionWrap = () => {
   
 
   return (
-    <div className="game_page_wrap">
-      <div className="game_buttons">
+    <div className="game_page_wrap" data-testid="game_page_test">
+      <div className="game_buttons" data-testid="game_buttons_test">
         <GoCheck
           className="check_button"
           onClick={() => {

@@ -6,7 +6,7 @@ const StartPage = ({ setReady, redy }) => {
   const dispatch = useDispatch();
   
   return (
-    <div className="main_page">
+    <div className="main_page" data-testid="start_page_test">
       <p>START if you are ready to start Quiz</p>
       <button
         onClick={() => {

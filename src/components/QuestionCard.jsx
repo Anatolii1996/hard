@@ -22,7 +22,7 @@ const QuestionCard = ({
   }, [selectedEl])
 
   return (
-    <div className="game_area">
+    <div className="game_area" data-testid="question_card_test">
       <p className="qustion_text">{question}</p>
       <div className="answer_buttons_wrap">
         {mayAnswers.map((el) => {
