@@ -16,7 +16,7 @@
   justify-content: center;
   background-color: rgb(46, 45, 45);
   .auth_wrap {
-    width: 500px;
+    width: min(500px, 90%);
     height: 150px;
     background-color: rgb(33, 37, 41);
     display: flex;
