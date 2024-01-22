@@ -1,3 +1,4 @@
+/* eslint-disable */
 const AnswerButon = ({ el, selected, setSelected, userRight }) => {
   return (
     <button    

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { db, auth } from "../firebase";

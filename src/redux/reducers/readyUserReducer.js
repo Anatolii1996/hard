@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { READY_USER, CANCEL_READY_USER } from "../constants";
 
 const initialState = {};

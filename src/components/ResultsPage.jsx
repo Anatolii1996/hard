@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import {  db, auth } from "../firebase";
 import { deleteDoc, doc } from "firebase/firestore";

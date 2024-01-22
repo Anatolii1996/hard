@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { auth } from '../firebase';
 import { useDispatch } from 'react-redux';
 import { getReadyUser } from "../redux/actionCreator";

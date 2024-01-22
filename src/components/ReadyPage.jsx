@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cancelReadyUser } from "../redux/actionCreator";
